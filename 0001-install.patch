@@ -1,0 +1,55 @@
+From 2b3e8cf0d37128d236831ddb9e60f09de5964438 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Wed, 14 Aug 2024 19:56:21 +0800
+Subject: [PATCH] install
+
+---
+ SatSimApp.desktop | 11 +++++++++++
+ SatSimApp.pro     | 10 +++++++++-
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+ create mode 100644 SatSimApp.desktop
+
+diff --git a/SatSimApp.desktop b/SatSimApp.desktop
+new file mode 100644
+index 0000000..a3be42e
+--- /dev/null
++++ b/SatSimApp.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=SatSimApp
++Name=SatSimApp
++Name[zh_CN]=SatSimApp
++Icon=SatSimApp
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=SatSimApp
++Version=1.0
+\ No newline at end of file
+diff --git a/SatSimApp.pro b/SatSimApp.pro
+index 6c3071d..a8028e3 100644
+--- a/SatSimApp.pro
++++ b/SatSimApp.pro
+@@ -419,9 +419,17 @@ FORMS += \
+ 
+ # Default rules for deployment.
+ qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
++else: unix:!android: #target.path = /opt/$${TARGET}/bin
+ !isEmpty(target.path): INSTALLS += target
+ 
++target.path = $$PREFIX/bin
++desktop.files = SatSimApp.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = SatSimApp.png
++
++INSTALLS += target desktop icons
++
+ DISTFILES += \
+     ../../../usr/local/include/eigen3/signature_of_eigen3_matrix_library \
+     lib/Eigen/CMakeLists.txt
+-- 
+2.43.4
+
